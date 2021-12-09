@@ -56,7 +56,7 @@ function add_email($email) {
   ?>
   <h1>Add your email below to receive weekly influence reminders</h1>
   <form method="POST" action="./index.php">
-    <input type="text" name="add_email" id="add_email">
+    <input type="text" size=40 name="add_email" id="add_email">
     <input type="submit" value="Add">
   </form>
   <?php } ?>
