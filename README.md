@@ -6,10 +6,14 @@ of one of the influence prescriptions taught in Wharton's OIDD 693 course.
 ## Installation
 
 Clone this repository, add the cron sample (adjusted to your file location) to
-your crontab and ensure your `mail` command works. You can also host the `index.php`
-to get the web interface working.
+your crontab and ensure your `mail` command works. You'll also need the `jq` tool.
+You can also host `index.php` to get the web interface working.
 
 ## Live Example
 
 [https://www.sanjitdutta.com/influence](https://www.sanjitdutta.com/influence)
 hosts a functional live example of this tool (as of December 2021).
+
+## Demo
+
+TBD
