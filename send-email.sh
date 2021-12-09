@@ -11,5 +11,5 @@ while read p; do
   <p>$DESCRIPTION</p><br /> \
   <p>No longer want to receive these reminders? \
   Click <a href='https://www.sanjitdutta.com/influence/?remove_email=$p'>here</a>." \
-  | mail -s "Influence Weekly Reminder: $SUBJECT" $p
+  | mail -a "Content-type: text/html" -s "Influence Weekly Reminder: $SUBJECT" $p
 done <participants.txt

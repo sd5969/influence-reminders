@@ -9,4 +9,4 @@
 # |  |  |  |  |
 # *  *  *  *  * user-name (optional) command to be executed
 
-  0  9  *  *  1 sh /<path_to_this_repository>/send-email.sh
+  0  9  *  *  1 bash /<path_to_this_repository>/send-email.sh
