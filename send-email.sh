@@ -4,7 +4,7 @@ FILE="./influence-reminders.json"
 LENGTH=`jq length $FILE`
 
 while read p; do
-  ENTRY=$[RANDOM % LENGTH]
+  ENTRY=$((RANDOM % $LENGTH))
   SUBJECT=`jq -r ".[${ENTRY}].title" $FILE`
   DESCRIPTION=`jq -r ".[${ENTRY}].body" $FILE`
   echo "<h1>$SUBJECT</h1> \
