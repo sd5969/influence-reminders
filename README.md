@@ -16,4 +16,23 @@ hosts a functional live example of this tool (as of December 2021).
 
 ## Demo
 
-TBD
+### Navigate to the website and add your email to the mailing list
+
+![Step 1](./assets/step-1.png)
+
+### Website confirms email is added
+
+![Step 2](./assets/step-2.png)
+
+### Every Monday receive an email like this...
+![Step 3.1](./assets/step-3.1.png)
+
+### ...or this
+![Step 3.2](./assets/step-3.2.png)
+
+### Click the link in the email to unsubscribe
+![Step 4](./assets/step-4.png)
+
+### Full list of prescriptions
+
+[Link](https://www.sanjitdutta.com/influence/influence-reminders.html)
