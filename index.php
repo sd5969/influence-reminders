@@ -1,6 +1,9 @@
 <?php
 
 function remove_email($email) {
+  if(!eregi("^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$", $email)) {
+    return false;
+  }
   $file_path = "./participants.txt";
   $file = fopen($file_path, "a+");
   $text = file_get_contents($file);
@@ -8,17 +11,19 @@ function remove_email($email) {
   ftruncate($file, 0);
   fwrite($file_path, $text);
   fclose($file);
+  return true;
 }
 
 function add_email($email) {
   if(!eregi("^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$", $email)) {
-    return;
+    return false;
   }
   remove_email($email);
   $file_path = "./participants.txt";
   $file = fopen($file_path, "a+");
   fwrite($file, $email);
   fclose($file);
+  return true;
 }
 
 ?>
@@ -29,13 +34,26 @@ function add_email($email) {
   <title>Influence Weekly Reminder Tool</title>
 </head>
 <body>
-  <?php if(isset($_GET["remove_email"])) {
-    remove_email($_GET["remove_email"]);
-    echo "<h1>Your email $_GET[\"remove_email\"] has been removed from our mailing list.</h1>";
-  } else if(isset($_POST["add_email"])) {
-    add_email($_POST["add_email"]); // make sure this doesn't add email if it already exists. also make sure it escapes the input properly and only adds valid emails
-    echo "<h1>Your email $_POST[\"add_email\"] has been added to our mailing list.</h1>";
-  } else {
+  <?php
+  if(isset($_GET["remove_email"])) {
+    $email = $_GET["remove_email"];
+    if(remove_email($email)) {
+      echo "<h1>Your email $email has been removed from our mailing list.</h1>";
+    } else {
+      echo "<h1>Your email $email failed to be removed from our mailing list.</h1>";
+    }
+  }
+
+  else if(isset($_POST["add_email"])) {
+    $email = $_POST["add_email"];
+    if(add_email($email)) {
+        echo "<h1>Your email $email has been added to our mailing list.</h1>";
+    } else {
+        echo "<h1>Your email $email failed to be added to our mailing list.</h1>";
+    }; // make sure this doesn't add email if it already exists. also make sure it escapes the input properly and only adds valid emails
+  }
+
+  else {
   ?>
   <h1>Add your email below to receive weekly influence reminders</h1>
   <form method="POST" action="./index.php">
