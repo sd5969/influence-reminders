@@ -1,27 +1,26 @@
 <?php
 
 function remove_email($email) {
-  if(!eregi("^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$", $email)) {
+  if(!preg_match("/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/", $email)) {
     return false;
   }
   $file_path = "./participants.txt";
-  $file = fopen($file_path, "a+");
-  $text = file_get_contents($file);
+  $text = file_get_contents($file_path);
   $text = str_replace($email . "\n","",$text);
-  ftruncate($file, 0);
-  fwrite($file_path, $text);
+  $file = fopen($file_path, "w");
+  fwrite($file, $text);
   fclose($file);
   return true;
 }
 
 function add_email($email) {
-  if(!eregi("^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$", $email)) {
+  if(!preg_match("/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/", $email)) {
     return false;
   }
   remove_email($email);
   $file_path = "./participants.txt";
   $file = fopen($file_path, "a+");
-  fwrite($file, $email);
+  fwrite($file, $email . "\n");
   fclose($file);
   return true;
 }
